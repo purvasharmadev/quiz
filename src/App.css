@@ -1,46 +1,38 @@
-* {
-  --PRIMARY-COLOR: #7dd3fc;
-  --SECONDARY-COLOR: #4f46e5;
-  --TEXT-COLOR: #bae6fd;
-  --BACKGROUND-COLOR: #312e81;
+.App {
+  text-align: center;
 }
 
-
-
-body {
-  background-color: var(--BACKGROUND-COLOR);
-  height: 100%;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.bg {
-  background-color: var(--SECONDARY-COLOR);
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-div .correct-ans {
-  background-color: var(--PRIMARY-COLOR);
-  color: var(--SECONDARY-COLOR);
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-div .incorrect-ans {
-  background-color: var(--DANGER-COLOR);
-  color: var(--TEXT-COLOR);
+.App-link {
+  color: #61dafb;
 }
 
-.round-corner {
-  border-radius: 2rem 2rem;
-}
-
-div .optionDiv:hover {
-  background-color: var(--PRIMARY-COLOR);
-  color: var(--SECONDARY-COLOR);
-  cursor: pointer;
-}
-
-.modal {
-  opacity: 0.9;
-  height: fit-content;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
