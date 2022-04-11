@@ -1,52 +1,83 @@
-import data from "../../data";
+import { useQuiz } from "../../Context/quiz-context";
+import { Link } from "react-router-dom";
 
 function Results() {
+  const {
+    state: { ques, score, RandomOptionsArray, selected, SelectedOptionArray },
+    dispatch,
+  } = useQuiz();
+
+  function createMarkup(text) {
+    return { __html: text };
+  }
+
+  function handleSelect(option, i) {
+    if (
+      SelectedOptionArray[i] === option &&
+      SelectedOptionArray[i] === ques[i].correct_answer
+    ) {
+      return "correct";
+    } else if (
+      SelectedOptionArray[i] === option &&
+      SelectedOptionArray[i] !== ques[i].correct_answer
+    ) {
+      return "wrong";
+    } else if (option === ques[i].correct_answer) {
+      return "correct";
+    }
+  }
   return (
     <>
-      <div className="container color-primary">
-        <h2 className="text-center">Results</h2>
-        <h2 className="text-center">Final Score: 0</h2>
-      </div>
-
       <div className="container">
-        {data.results.map((item) => {
-          return (
-            <>
-              {/* Question */}
-              <div className="p-1 bg color-primary m-1 round-corner">
-                <p className="text-center text-normal">{item.question}</p>
-              </div>
-
-              {/* Options */}
-              <div className="flex flex-space-between w-100">
-                <div className="p-1 bg color-primary m-1 round-corner w-50  correct-ans">
-                  <p className="text-center text-normal ">
-                    {item.correct_answer}
-                  </p>
-                </div>
-                <div className="p-1 bg color-primary m-1 round-corner w-50  incorrect-ans">
-                  <p className="text-center text-normal">
-                    {item.incorrect_answers[0]}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-space-between w-100">
-                <div className="p-1 bg color-primary m-1 round-corner w-50 ">
-                  <p className="text-center text-normal">
-                    {item.incorrect_answers[2]}
-                  </p>
-                </div>
-                <div className="p-1 bg color-primary m-1 round-corner w-50 ">
-                  <p className="text-center text-normal">
-                    {item.incorrect_answers[1]}
-                  </p>
-                </div>
-              </div>
-              <hr />
-            </>
-          );
-        })}
+        <h2 className="text-center color-primary text-lg">Results</h2>
+        <div className="flex flex-space-between align-item-center">
+          <h2 className="color-primary text-md">
+            Score : {score} / {ques.length * 5}
+          </h2>
+          <Link
+            onClick={() => dispatch({ type: "clear_default" })}
+            className="color-primary link"
+            to="/"
+          >
+            <h3 className="text-md">Take Another Quiz </h3>
+          </Link>
+        </div>
+      </div>
+      <div className="container">
+        {ques
+          ? ques.map((item, i) => {
+              return (
+                <>
+                  <div className="bg color-primary m-1 round-corner">
+                    <p
+                      key={item}
+                      className="text-center text-normal"
+                      dangerouslySetInnerHTML={createMarkup(item.question)}
+                    ></p>
+                  </div>
+                  <div className="flex flex-space-between">
+                    {RandomOptionsArray &&
+                      RandomOptionsArray[i].map((option) => {
+                        return (
+                          <button
+                            key={option}
+                            className={`optionDiv bg btn w-100 color-primary m-1 round-corner ${
+                              selected === true ? handleSelect(option, i) : ""
+                            } `}
+                          >
+                            <p
+                              className="text-center text-normal"
+                              dangerouslySetInnerHTML={createMarkup(option)}
+                            ></p>
+                          </button>
+                        );
+                      })}
+                  </div>
+                  <hr className="m-1" />
+                </>
+              );
+            })
+          : " "}
       </div>
     </>
   );
