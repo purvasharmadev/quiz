@@ -1,41 +1,51 @@
-import { useState } from "react";
-
 // Components
 import { CategoryCard } from "./Category/category-card";
-import data from "../data";
-
+import Categories from "../Data/category-list";
+import { useQuiz } from "../Context/quiz-context";
 function HomePage() {
-  // UseState to store userName
-  const [userName, setUserName] = useState("");
+  let categoryList = Categories;
+
+  const {
+    state: { search_query },
+    dispatch,
+    fetchQues,
+  } = useQuiz();
+
+  if (search_query) {
+    categoryList = Categories.filter((item) =>
+      item.category.toLowerCase().includes(search_query)
+    );
+  }
 
   return (
     <>
       <div className="container text-center m-auto">
-        <h2 className="color-primary text-xlg">Quizio</h2>
+        <h2 className="color-primary text-lg">Quizio</h2>
+
+        <p className="color-primary">Select a Category to play Quizio</p>
 
         <input
           onChange={(e) => {
-            const name = e.target.value;
-            setUserName(() => name);
+            dispatch({ type: "search_query", payload: e.target.value });
           }}
           type="text"
-          placeholder="Enter your name!"
+          placeholder="Search A quiz"
           className="w-50 p-1 text-center"
         />
       </div>
 
-      {userName && (
-        <div className="container text-center">
-          <h2 className="color-primary">Hello {userName}</h2>
-          <p className="color-primary">Select a Category to play Quizio</p>
-        </div>
-      )}
-
       {/* CategoryList */}
       <div className="w-100 flex flex-wrap flex-space-center align-item-center">
-        {data.results.map((item) => {
-          return <CategoryCard item={item.category} />;
-        })}
+        {categoryList &&
+          categoryList.map((item) => {
+            return (
+              <CategoryCard
+                key={item.value}
+                value={item.value}
+                item={item.category}
+              />
+            );
+          })}
       </div>
     </>
   );
