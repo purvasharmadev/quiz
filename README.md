@@ -21,6 +21,8 @@ Click [here](https://quiziio.netlify.app/) to Play now.
 - uses html, css
 - react Context Api and useReducer
 
+### API used
+- [OpenDB Trivia API](https://opentdb.com/api_config.php)
 
 ### To run this app locally:
 
