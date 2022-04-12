@@ -1,0 +1,67 @@
+* {
+  --PRIMARY-COLOR: #7dd3fc;
+  --SECONDARY-COLOR: #4f46e5;
+  --TEXT-COLOR: #bae6fd;
+  --BACKGROUND-COLOR: #312e81;
+}
+
+
+
+body {
+  background-color: var(--BACKGROUND-COLOR);
+  height: 100%;
+}
+
+.bg {
+  background-color: var(--SECONDARY-COLOR);
+  padding: 10px;
+}
+
+div .select {
+  background-color: var(--PRIMARY-COLOR);
+  color: var(--SECONDARY-COLOR);
+}
+
+div .correct:hover{
+  background-color: none;
+}
+
+div .wrong {
+  background-color: var(--DANGER-COLOR);
+  color: var(--TEXT-COLOR);
+}
+
+.round-corner {
+  border-radius: 2rem 2rem;
+}
+
+div .optionDiv:hover {
+  background-color: var(--PRIMARY-COLOR);
+  color: var(--SECONDARY-COLOR);
+  cursor: pointer;
+}
+
+div .correct{
+  background-color:green;
+}
+
+
+.modal {
+  opacity: 0.9;
+  height: fit-content;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+@media (max-width:650px) {
+  div{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  div h2, h3{
+    text-align: center;
+  }
+}
