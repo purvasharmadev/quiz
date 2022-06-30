@@ -33,6 +33,11 @@ function Rules() {
               </ol>
             </div>
             <div className="modal-footer">
+              <button className="modal-btn">
+                <Link onClick={()=>dispatch({type:"clear_default"})} className="modal-btn" to="/">
+                  Quit
+                </Link>
+              </button>
               <button
                 onClick={() => {
                   setDisplay("none");
@@ -40,11 +45,6 @@ function Rules() {
                 className="modal-btn"
               >
                 Understood!
-              </button>
-              <button className="modal-btn">
-                <Link onClick={()=>dispatch({type:"clear_default"})} className="modal-btn" to="/">
-                  Quit
-                </Link>
               </button>
             </div>
           </div>
