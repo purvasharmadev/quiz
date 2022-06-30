@@ -45,6 +45,17 @@ div .correct{
   background-color:green;
 }
 
+div .transition{
+  transition:all 3s
+}
+
+.card-header{
+  aspect-ratio: 16/9;
+}
+
+.card-header img{
+  aspect-ratio: 16/9;
+}
 
 .modal {
   opacity: 0.9;
