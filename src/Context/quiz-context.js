@@ -11,7 +11,7 @@ const QuizContext = createContext();
 
 const QuizProvider = ({ children }) => {
   const [apiError, setApiError] = useState(false);
-  const [lodaer, setLoader] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   // reducer function to manipulate state according to action type
   function reducerFn(state, action) {
@@ -84,6 +84,7 @@ const QuizProvider = ({ children }) => {
     }
   }
 
+
   // useReducer
   const [state, dispatch] = useReducer(reducerFn, {
     index: 0,
@@ -106,7 +107,7 @@ const QuizProvider = ({ children }) => {
       dispatch({ type: "Question", payload: data.results });
     } catch (error) {
       setApiError(() => true);
-      console.log(apiError);
+      console.error(error.response.data.errors[0]);
     }
   }
 
@@ -137,6 +138,7 @@ const QuizProvider = ({ children }) => {
         dispatch,
         fetchQues,
         apiError,
+        loader
       }}
     >
       {children}

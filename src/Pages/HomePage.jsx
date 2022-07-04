@@ -8,12 +8,11 @@ function HomePage() {
   const {
     state: { search_query },
     dispatch,
-    fetchQues,
   } = useQuiz();
 
   if (search_query) {
     categoryList = Categories.filter((item) =>
-      item.category.toLowerCase().includes(search_query)
+      item.category.toLowerCase().includes(search_query.toLowerCase())
     );
   }
 
@@ -36,16 +35,23 @@ function HomePage() {
 
       {/* CategoryList */}
       <div className="w-100 flex flex-wrap flex-space-center align-item-center">
-        {categoryList &&
+        {categoryList.length !== 0 ?
           categoryList.map((item) => {
             return (
               <CategoryCard
                 key={item.value}
                 value={item.value}
                 item={item.category}
+                img={item.img}
               />
             );
-          })}
+          }):
+          (
+            <div>
+              <h1 className="color-primary">No quizes found!!</h1>
+            </div>
+          )
+          }
       </div>
     </>
   );
