@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 // Components
 import { Rules } from "./rules";
@@ -11,6 +11,8 @@ function Quiz() {
     dispatch,
   } = useQuiz();
 
+  const navigateTo = useNavigate()
+
   function createMarkup(text) {
     return { __html: text };
   }
@@ -19,6 +21,9 @@ function Quiz() {
     dispatch({ type: "Selected", payload: true });
     dispatch({ type: "SelectedOption", payload: i });
     dispatch({ type: "ShowResult" });
+    if(index === ques.length -1){
+      navigateTo("/results")
+    }
     dispatch({ type: "NextQues", payload: ques.length });
     if (i === ques[index].correct_answer) {
       dispatch({ type: "AddScore" });
@@ -87,12 +92,6 @@ function Quiz() {
             >
               Quit
             </Link>
-
-            {index === ques.length - 1 && (
-              <Link className="btn btn-secondary p-1 m-1" to="/results">
-                Show Results
-              </Link>
-            )}
           </div>
         </>
       ) : (
