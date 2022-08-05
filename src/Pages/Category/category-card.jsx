@@ -19,7 +19,7 @@ function CategoryCard(props) {
         <div className="card-header bg">
           <img
             src={props.img}
-            alt="categorImg"
+            alt="categoryImg"
             className="img-responsive"
           />
         </div>
