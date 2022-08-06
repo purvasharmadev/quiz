@@ -1,18 +1,18 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../Context/quiz-context";
 
 function CategoryCard(props) {
   const navigateTo = useNavigate();
-  const { fetchQues, apiError } = useQuiz();
+  const { apiError,setCategory } = useQuiz();
 
   function navigateToQuiz() {
-    fetchQues(props.value);
-    if(apiError){
-      navigateTo("*")
-    }else{
-      navigateTo("/quiz")
-    }
+    setCategory(props.value)
+      navigateTo('/quiz')
   }
+
+  useEffect(()=>{
+  },[apiError])
   return (
     <>
       <div className="card m-1">

@@ -5,19 +5,20 @@ import {
   useReducer,
   useState,
 } from "react";
-import axios from "axios";
-import { reducerFn } from "./reducerFn";
+import { reducerFn } from "../Reducer/reducerFn";
+import { fetchQues } from "../Services/fetchQues";
 
 const QuizContext = createContext();
 
 const QuizProvider = ({ children }) => {
+  // useState for loader
+  const [loader, setLoader] = useState(true);
 
-    // useState for loader
-    const [loader, setLoader] = useState(true);
+  // /useState for category
+  const [category, setCategory] = useState(9);
 
-    //   useState for error
-    const [apiError, setApiError] = useState(false);
-  
+  //   useState for error
+  const [apiError, setApiError] = useState(false);
 
   const initialState = {
     index: 0,
@@ -29,39 +30,39 @@ const QuizProvider = ({ children }) => {
     options: undefined,
     RandomOptionsArray: [],
     SelectedOptionArray: [],
-  }
+  };
 
   // useReducer
   const [state, dispatch] = useReducer(reducerFn, initialState);
 
-  // useFetchQues(category, setLoader,setApiError)res.
+  useEffect(() => {
+    setLoader(true);
+    const loadData = async () => {
+      const res = await fetchQues(category);
+      if (res) {
+        if (res.response_code === 0) {
+          dispatch({ type: "Question", payload: res.results });
+        } else {
+          setApiError("Something went wrong");
+        }
+      }
+      setLoader(false);
+    };
+    loadData();
+  }, [category]);
 
-  async function fetchQues(category) {
-    try {
-      const { data } = await axios.get(
-        `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`
-      );
-      setLoader(true);
-      dispatch({ type: "Question", payload: data.results });
-    } catch (error) {
-      setApiError(() => true);
-      console.error(error.response.data.errors[0]);
-    }
-  }
   useEffect(() => {
     {
-      state.ques
-        && dispatch({
-            type: "option",
-            payload: [
-              state.ques[state.index]?.correct_answer,
-              ...state.ques[state.index]?.incorrect_answers,
-            ],
-          })
+      state.ques &&
+        dispatch({
+          type: "option",
+          payload: [
+            state.ques[state.index]?.correct_answer,
+            ...state.ques[state.index]?.incorrect_answers,
+          ],
+        });
     }
   }, [state.ques, state.index]);
-
-
 
   return (
     <QuizContext.Provider
@@ -70,7 +71,7 @@ const QuizProvider = ({ children }) => {
         dispatch,
         apiError,
         loader,
-        fetchQues
+        setCategory,
       }}
     >
       {children}
@@ -80,4 +81,4 @@ const QuizProvider = ({ children }) => {
 
 const useQuiz = () => useContext(QuizContext);
 
-export { QuizProvider, useQuiz};
+export { QuizProvider, useQuiz };

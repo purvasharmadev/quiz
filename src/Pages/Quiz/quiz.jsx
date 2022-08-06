@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // Components
 import { Rules } from "./rules";
@@ -8,8 +9,10 @@ import { useQuiz } from "../../Context/quiz-context";
 function Quiz() {
   const {
     state: { index, ques, selectedOption, options, selected },
+    apiError,
     dispatch,
   } = useQuiz();
+  const navigateTo = useNavigate();
 
   function createMarkup(text) {
     return { __html: text };
@@ -33,6 +36,12 @@ function Quiz() {
     }
   }
 
+  useEffect(() => {
+    if (apiError) {
+      navigateTo("*");
+    }
+    //eslint-disable-next-line
+  }, [apiError]);
   return (
     <>
       <Rules />
