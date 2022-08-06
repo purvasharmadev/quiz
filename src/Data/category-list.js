@@ -18,7 +18,7 @@ const Categories = [
     img:"https://observer.com/wp-content/uploads/sites/2/2020/05/long-running-comedy-shows.jpg?quality=80",
      value: 14 },
     { category: "Video Games",
-    img:"https://www.nielsen.com/wp-content/uploads/sites/3/2020/06/sports-video-gaming-seo.jpg?fit=1200%2C675",
+    img:"https://i.pinimg.com/originals/1d/a8/7a/1da87aab8ef6ca07598a8671fc752f6d.jpg",
      value: 15 },
     { category: "Board Games",
     img:"https://www.scienceofpeople.com/wp-content/uploads/2020/05/best-board-games-for-adults.jpg",
