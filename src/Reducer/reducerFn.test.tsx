@@ -1,4 +1,4 @@
-import { reducerFn } from "../Reducer/reducerFn";
+import { reducerFn } from "./reducerFn";
 
 const initialState = {
   index: 1,
