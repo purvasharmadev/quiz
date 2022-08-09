@@ -1,6 +1,7 @@
-import { reducerFn } from "../Reducer/reducerFn";
+import { reducerFn } from "./reducerFn";
+import { QuizReducer } from "./reducerFn.types";
 
-const initialState = {
+const initialState : QuizReducer = {
   index: 1,
   search_query: "",
   ques: undefined,
@@ -17,7 +18,7 @@ describe("testing reducer function", () => {
 
   test("CASE_NEXT_QUES", () => {
     //arrange
-    const goToNext = {
+    const goToNext:any = {
       type: "NextQues",
       payload: 10,
     };
@@ -42,12 +43,12 @@ describe("testing reducer function", () => {
   //test - 2
   test("CASE_ADD_SCORE", () => {
     //arrange
-    const score = {
+    const addScore:any = {
       type: "AddScore",
     };
 
     //act
-    let state = reducerFn(initialState, score);
+    let state = reducerFn(initialState, addScore);
 
     //assert
     expect(state).toEqual({
@@ -66,12 +67,12 @@ describe("testing reducer function", () => {
   //test - 3
   test("CASE_SUB_SCORE", () => {
     //arrange
-    const score = {
+    const subScore:any = {
       type: "SubScore",
     };
 
     //act
-    let state = reducerFn(initialState, score);
+    let state = reducerFn(initialState, subScore);
 
     //assert
     expect(state).toEqual({
@@ -90,7 +91,7 @@ describe("testing reducer function", () => {
   //test - 4
   test("CASE_SEARCH_QUERY", () => {
     //arrange
-    const search_query = {
+    const search_query:any = {
       type: "search_query",
       payload: "general knowledge",
     };
@@ -113,7 +114,7 @@ describe("testing reducer function", () => {
   //test - 5
   test("CASE_SELECTED_OPTION", () => {
     //arrange
-    const SelectedOption = {
+    const SelectedOption:any = {
       type: "SelectedOption",
       payload: ["option1", "option2", "option3", "option4"],
     };
@@ -136,7 +137,7 @@ describe("testing reducer function", () => {
   //test - 6
   test("CASE_SELECTED", () => {
     //arrange
-    const Selected = {
+    const Selected:any = {
       type: "Selected",
       payload: true,
     };
@@ -159,7 +160,7 @@ describe("testing reducer function", () => {
   //test - 7
   test("CASE_QUESTION", () => {
     //arrange
-    const Question = {
+    const Question:any = {
       type: "Question",
       payload: [],
     };
@@ -182,12 +183,12 @@ describe("testing reducer function", () => {
   //test - 8
   test("CASE_Clear_default", () => {
     //arrange
-    const ShowResult = {
+    const clearDefault:any = {
       type: "clear_default",
     };
 
     //act
-    let state = reducerFn(initialState, ShowResult);
+    let state = reducerFn(initialState, clearDefault);
     //assert
     expect(state).toEqual({
       index: 0,
@@ -205,7 +206,7 @@ describe("testing reducer function", () => {
   //test - 9
   test("CASE_Default", () => {
     //arrange
-    const defaultState = {
+    const defaultState:any = {
       type: "",
     };
     //act

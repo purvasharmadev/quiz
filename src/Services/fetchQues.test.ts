@@ -1,11 +1,13 @@
-import { fetchQues } from "../Services/fetchQues";
+import { fetchQues } from "./fetchQues";
 import axios from "axios"
 
 jest.mock('axios')
 
+
+
 describe("get quiz", () => {
     test("should return quiz when API call is successful", async () => {
-      axios.get.mockResolvedValue({
+      (axios.get as jest.Mock).mockResolvedValue({
         data: {
           results: [
             {
@@ -18,7 +20,7 @@ describe("get quiz", () => {
           ],
         },
       });
-      const ques = await fetchQues();
+      const ques = await fetchQues(9);
       expect(ques).toEqual({
         results:
         [
@@ -35,10 +37,10 @@ describe("get quiz", () => {
     });
   
     test("should return errorMessage when API is call fails", async () => {
-      axios.get.mockRejectedValue({error:{
+      (axios.get as jest.Mock).mockResolvedValue({error:{
         response:undefined
       }});
-      const ques = await fetchQues();
+      const ques = await fetchQues(9);
       expect(ques).toEqual(undefined);
     });
   });

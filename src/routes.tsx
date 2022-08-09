@@ -3,6 +3,7 @@ import {PageNotFound} from "./Pages/PageNotFound"
 import { HomePage } from "./Pages/HomePage";
 import {Quiz} from "./Pages/Quiz/quiz";
 import { Results } from "./Pages/Quiz/results";
+import React from "react";
 
 export default function URLRoutes() {
   return (

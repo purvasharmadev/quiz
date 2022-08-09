@@ -1,30 +1,31 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../Context/quiz-context";
+import { CategoryCardProps } from "./category-card.types";
 
-function CategoryCard(props) {
+function CategoryCard({ img, value, item }: CategoryCardProps) {
   const navigateTo = useNavigate();
-  const { apiError,setCategory } = useQuiz();
+  const { apiError, setCategory } = useQuiz();
 
   function navigateToQuiz() {
-    setCategory(props.value)
-      navigateTo('/quiz')
+    setCategory(value)
+    if (apiError) {
+      navigateTo("*")
+    } else {
+      navigateTo("/quiz")
+    }
   }
-
-  useEffect(()=>{
-  },[apiError])
   return (
     <>
       <div className="card m-1">
         <div className="card-header bg">
           <img
-            src={props.img}
+            src={img}
             alt="categoryImg"
             className="img-responsive"
           />
         </div>
         <div className="card-body text-center color-primary">
-          <h3> {props.item} </h3>
+          <h3> {item} </h3>
           <div className="card-footer">
             <button onClick={navigateToQuiz} className="btn btn-secondary">
               Play Now

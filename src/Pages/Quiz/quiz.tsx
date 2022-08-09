@@ -1,24 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Components
 import { Rules } from "./rules";
 
 import { useQuiz } from "../../Context/quiz-context";
 
+
 function Quiz() {
   const {
     state: { index, ques, selectedOption, options, selected },
-    apiError,
     dispatch,
   } = useQuiz();
-  const navigateTo = useNavigate();
 
-  function createMarkup(text) {
+  function createMarkup(text:any) {
     return { __html: text };
   }
 
-  function optionHandler(i) {
+  function optionHandler(i:any) {
     dispatch({ type: "Selected", payload: true });
     dispatch({ type: "SelectedOption", payload: i });
     dispatch({ type: "ShowResult" });
@@ -30,18 +28,12 @@ function Quiz() {
     }
   }
 
-  function handleSelect(i) {
+  function handleSelect(i:any) {
     if (selectedOption === i) {
       return "select";
     }
   }
 
-  useEffect(() => {
-    if (apiError) {
-      navigateTo("*");
-    }
-    //eslint-disable-next-line
-  }, [apiError]);
   return (
     <>
       <Rules />
@@ -67,7 +59,7 @@ function Quiz() {
 
           <div className="flex flex-space-between">
             {options &&
-              options.map((i) => {
+              options.map((i:any) => {
                 return (
                   <button
                     key={i}
