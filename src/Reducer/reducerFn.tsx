@@ -1,5 +1,7 @@
 // reducer function to manipulate state according to action type
-export function reducerFn(state, action) {
+import { QuizReducer,QuizAction } from "./reducerFn.types";
+
+export function reducerFn(state:QuizReducer, action:QuizAction) {
   switch (action.type) {
     //go to next ques
     case "NextQues":
@@ -46,7 +48,7 @@ export function reducerFn(state, action) {
           : [...state.SelectedOptionArray],
       };
 
-    // Set to initital state
+    // Set to initial state
     case "clear_default":
       return {
         ...state,

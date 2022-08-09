@@ -5,17 +5,18 @@ import { Rules } from "./rules";
 
 import { useQuiz } from "../../Context/quiz-context";
 
+
 function Quiz() {
   const {
     state: { index, ques, selectedOption, options, selected },
     dispatch,
   } = useQuiz();
 
-  function createMarkup(text) {
+  function createMarkup(text:any) {
     return { __html: text };
   }
 
-  function optionHandler(i) {
+  function optionHandler(i:any) {
     dispatch({ type: "Selected", payload: true });
     dispatch({ type: "SelectedOption", payload: i });
     dispatch({ type: "ShowResult" });
@@ -27,7 +28,7 @@ function Quiz() {
     }
   }
 
-  function handleSelect(i) {
+  function handleSelect(i:any) {
     if (selectedOption === i) {
       return "select";
     }
@@ -58,7 +59,7 @@ function Quiz() {
 
           <div className="flex flex-space-between">
             {options &&
-              options.map((i) => {
+              options.map((i:any) => {
                 return (
                   <button
                     key={i}
