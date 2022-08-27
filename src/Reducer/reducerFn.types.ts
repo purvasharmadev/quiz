@@ -9,6 +9,7 @@ export type QuizReducer = {
     RandomOptionsArray:string[];
     SelectedOptionArray:string[];
   };
+
   
  export type QuizAction =
     | {
@@ -21,19 +22,17 @@ export type QuizReducer = {
       }
     | {
       type:'Question';
-      payload:string;
+      payload:[];
     }
     | {
       type:'AddScore';
-      score:number;
     }
     | {
       type:'SubScore';
-      score:number
     }
     | {
       type:'SelectedOption';
-      payload:string
+      payload:string[]
     }
     | {
       type:'Selected';
@@ -49,13 +48,4 @@ export type QuizReducer = {
     }
     |{
       type:'clear_default';
-      index:number;
-      search_query:string;
-      ques:string;
-      score:number;
-      selectedOption:string;
-      selected:string;
-      options:string;
-      RandomOptionsArray:[];
-      SelectedOptionArray:[];
     }

@@ -12,11 +12,11 @@ function Quiz() {
     dispatch,
   } = useQuiz();
 
-  function createMarkup(text:any) {
+  function createMarkup(text: string) {
     return { __html: text };
   }
 
-  function optionHandler(i:any) {
+  function optionHandler(i: string) {
     dispatch({ type: "Selected", payload: true });
     dispatch({ type: "SelectedOption", payload: i });
     dispatch({ type: "ShowResult" });
@@ -28,7 +28,7 @@ function Quiz() {
     }
   }
 
-  function handleSelect(i:any) {
+  function handleSelect(i: string) {
     if (selectedOption === i) {
       return "select";
     }
@@ -45,7 +45,7 @@ function Quiz() {
             </h2>
             <div className="flex flex-space-between">
               <h3 className="color-primary">
-                Question : {index + 1} /{ques.length}
+                Question : {index + 1} / {ques.length}
               </h3>
               {/* <h3 className="color-primary">Score : {score}</h3> */}
             </div>
@@ -59,17 +59,16 @@ function Quiz() {
 
           <div className="flex flex-space-between">
             {options &&
-              options.map((i:any) => {
+              options.map((i: string, index: number) => {
                 return (
                   <button
-                    key={i}
+                    key={index}
                     onClick={() => {
                       optionHandler(i);
                     }}
                     //  disabled={selected  === true ? true: false}
-                    className={`optionDiv bg btn w-100 color-primary m-1 round-corner ${
-                      selected === true && handleSelect(i)
-                    }`}
+                    className={`optionDiv bg btn w-100 color-primary m-1 round-corner ${selected === true && handleSelect(i)
+                      }`}
                   >
                     <p
                       className="text-center text-normal"

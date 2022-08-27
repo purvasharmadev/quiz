@@ -1,5 +1,5 @@
 import { reducerFn } from "./reducerFn";
-import { QuizReducer } from "./reducerFn.types";
+import { QuizReducer,QuizAction } from "./reducerFn.types";
 
 const initialState : QuizReducer = {
   index: 1,
@@ -18,7 +18,7 @@ describe("testing reducer function", () => {
 
   test("CASE_NEXT_QUES", () => {
     //arrange
-    const goToNext:any = {
+    const goToNext:QuizAction = {
       type: "NextQues",
       payload: 10,
     };
@@ -43,7 +43,7 @@ describe("testing reducer function", () => {
   //test - 2
   test("CASE_ADD_SCORE", () => {
     //arrange
-    const addScore:any = {
+    const addScore:QuizAction = {
       type: "AddScore",
     };
 
@@ -67,7 +67,7 @@ describe("testing reducer function", () => {
   //test - 3
   test("CASE_SUB_SCORE", () => {
     //arrange
-    const subScore:any = {
+    const subScore:QuizAction = {
       type: "SubScore",
     };
 
@@ -91,7 +91,7 @@ describe("testing reducer function", () => {
   //test - 4
   test("CASE_SEARCH_QUERY", () => {
     //arrange
-    const search_query:any = {
+    const search_query:QuizAction = {
       type: "search_query",
       payload: "general knowledge",
     };
@@ -114,9 +114,9 @@ describe("testing reducer function", () => {
   //test - 5
   test("CASE_SELECTED_OPTION", () => {
     //arrange
-    const SelectedOption:any = {
+    const SelectedOption:QuizAction = {
       type: "SelectedOption",
-      payload: ["option1", "option2", "option3", "option4"],
+      payload: ["option1"],
     };
     //act
     let state = reducerFn(initialState, SelectedOption);
@@ -126,7 +126,7 @@ describe("testing reducer function", () => {
       search_query: "",
       ques: undefined,
       score: 0,
-      selectedOption: ["option1", "option2", "option3", "option4"],
+      selectedOption: ["option1"],
       selected: false,
       options: undefined,
       RandomOptionsArray: [],
@@ -137,7 +137,7 @@ describe("testing reducer function", () => {
   //test - 6
   test("CASE_SELECTED", () => {
     //arrange
-    const Selected:any = {
+    const Selected:QuizAction = {
       type: "Selected",
       payload: true,
     };
@@ -160,7 +160,7 @@ describe("testing reducer function", () => {
   //test - 7
   test("CASE_QUESTION", () => {
     //arrange
-    const Question:any = {
+    const Question:QuizAction = {
       type: "Question",
       payload: [],
     };
@@ -183,7 +183,7 @@ describe("testing reducer function", () => {
   //test - 8
   test("CASE_Clear_default", () => {
     //arrange
-    const clearDefault:any = {
+    const clearDefault:QuizAction = {
       type: "clear_default",
     };
 
