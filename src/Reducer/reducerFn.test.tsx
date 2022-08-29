@@ -31,10 +31,7 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, goToNext);
 
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      index: 2,
-    });
+    expect(state.index).toBe(2)
   });
 
   //test - 2
@@ -48,10 +45,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, addScore);
 
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      score: 5,
-    });
+    expect(state.score).toBe(5)
+
   });
 
   //test - 3
@@ -65,10 +60,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, subScore);
 
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      score: -1,
-    });
+    expect(state.score).toBe(-1)
+
   });
 
   //test - 4
@@ -81,10 +74,8 @@ describe("testing reducer function", () => {
     //act
     let state = reducerFn(initialState, search_query);
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      search_query: "general knowledge",
-    });
+    expect(state.search_query).toBe("general knowledge")
+
   });
 
   //test - 5
@@ -97,10 +88,7 @@ describe("testing reducer function", () => {
     //act
     let state = reducerFn(initialState, SelectedOption);
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      selectedOption: ["option1"],
-    });
+    expect(state.selectedOption).toContain('option1');
   });
 
   //test - 6
@@ -113,10 +101,8 @@ describe("testing reducer function", () => {
     //act
     let state = reducerFn(initialState, Selected);
     //assert
-    expect(state).toEqual({
-      ...initialState,
-      selected: true,
-    });
+    expect(state.selected).toBeTruthy()
+    
   });
 
   //test - 7
@@ -167,6 +153,6 @@ describe("testing reducer function", () => {
     //act
     let state = reducerFn(initialState, defaultState);
     //assert
-    expect(state).toEqual(initialState);
+    expect(state).toBe(initialState);
   });
 });
