@@ -13,6 +13,10 @@ const initialState : QuizReducer = {
   SelectedOptionArray: [],
 };
 
+beforeEach(() => {
+  return initialState;
+});
+
 describe("testing reducer function", () => {
   //test - 1
 
@@ -28,15 +32,8 @@ describe("testing reducer function", () => {
 
     //assert
     expect(state).toEqual({
+      ...initialState,
       index: 2,
-      search_query: "",
-      ques: undefined,
-      score: 0,
-      selectedOption: "",
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -52,15 +49,8 @@ describe("testing reducer function", () => {
 
     //assert
     expect(state).toEqual({
-      index: 1,
-      search_query: "",
-      ques: undefined,
+      ...initialState,
       score: 5,
-      selectedOption: "",
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -76,15 +66,8 @@ describe("testing reducer function", () => {
 
     //assert
     expect(state).toEqual({
-      index: 1,
-      search_query: "",
-      ques: undefined,
+      ...initialState,
       score: -1,
-      selectedOption: "",
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -99,15 +82,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, search_query);
     //assert
     expect(state).toEqual({
-      index: 1,
+      ...initialState,
       search_query: "general knowledge",
-      ques: undefined,
-      score: 0,
-      selectedOption: "",
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -122,15 +98,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, SelectedOption);
     //assert
     expect(state).toEqual({
-      index: 1,
-      search_query: "",
-      ques: undefined,
-      score: 0,
+      ...initialState,
       selectedOption: ["option1"],
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -145,15 +114,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, Selected);
     //assert
     expect(state).toEqual({
-      index: 1,
-      search_query: "",
-      ques: undefined,
-      score: 0,
-      selectedOption: "",
+      ...initialState,
       selected: true,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
@@ -168,15 +130,8 @@ describe("testing reducer function", () => {
     let state = reducerFn(initialState, Question);
     //assert
     expect(state).toEqual({
-      index: 1,
-      search_query: "",
+      ...initialState,
       ques: [],
-      score: 0,
-      selectedOption: "",
-      selected: false,
-      options: undefined,
-      RandomOptionsArray: [],
-      SelectedOptionArray: [],
     });
   });
 
